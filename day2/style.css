@@ -1,0 +1,15 @@
+
+.page-link{
+    color: black; 
+}
+
+.active{
+
+    background-color: black;
+    color: white;
+
+}
+
+.badge{
+    margin: 5px; 
+}
