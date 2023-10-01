@@ -1,0 +1,17 @@
+.my-card{
+    color: white; 
+    width: 100%; 
+    border: none; 
+    text-align: center; 
+    padding: 3rem 0 ; 
+}
+
+.my-card-outer :hover{
+    transition: 0.5s; 
+    transform: scale(1.1);
+    cursor: pointer;  
+}
+
+.my-card-outer .my-card :hover{
+    pointer-events: none
+}
