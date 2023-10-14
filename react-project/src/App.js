@@ -18,14 +18,23 @@ import { useEffect, useState } from "react"
 import React from "react"
 import Footer from "./componants/Footer"
 import axios from "axios"
+import SignInSide from "./signin/Signin"
+import SignUp from "./signin/Signup"
+import { useDispatch } from "react-redux"
+import changeCourseList from "./store/actions"
 
 function App() {
+	// TODO: Use redux instead of localStorage.
+
 	const [loaded, setLoaded] = useState(false)
+	const dispatch = useDispatch()
+
 	useEffect(() => {
 		axios
 			.get("http://localhost:3000/data")
 			.then((response) => {
 				var homepage = response.data
+				dispatch(changeCourseList(homepage))
 				localStorage.setItem("homepage", JSON.stringify(homepage))
 			})
 			.then(() => {
@@ -47,8 +56,14 @@ function App() {
 		<BrowserRouter>
 			<div className="App">
 				<NavBar />
+
 				<Routes>
 					<Route exact path="/" element={<Home loaded={loaded} />} />
+
+					<Route exact path="/signin" element={<SignInSide />} />
+
+					<Route exact path="/signup" element={<SignUp />} />
+
 					<Route
 						exact
 						path="/course/:courseID"

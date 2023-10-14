@@ -15,17 +15,19 @@ import CourseContent from "./CourseContent"
 import Descriptions from "./Descriptions"
 import Text from "./Desic.json"
 import axios from "axios"
+import { useSelector } from "react-redux"
 
 function CourseSinglePage() {
 	const { courseID } = useParams()
 	const [isPending, setPending] = useState(true)
 	const [data, setData] = useState([])
 	const [sections, setSections] = useState([])
-	const homepageData = JSON.parse(localStorage.getItem("homepage"))
+	const courseList = useSelector((state) => state.courseList)
+
 	let course
 	let name
-	for (let courseName in homepageData) {
-		course = homepageData[courseName]["courses"].find(
+	for (let courseName in courseList) {
+		course = courseList[courseName]["courses"].find(
 			(element) => element["id"] === parseInt(courseID)
 		)
 		if (course !== undefined) {
